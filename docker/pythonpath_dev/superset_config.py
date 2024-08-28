@@ -97,13 +97,39 @@ class CeleryConfig:
 
 CELERY_CONFIG = CeleryConfig
 
-FEATURE_FLAGS = {"ALERT_REPORTS": True}
+TALISMAN_ENABLED: False
+SESSION_COOKIE_SAMESITE = None
+ENABLE_PROXY_FIX = True
+PUBLIC_ROLE_LIKE_GAMMA = True
+#HTTP_HEADERS = {'X-Frame-Options': 'ALLOWALL'}
+FEATURE_FLAGS = {
+    "ALERT_REPORTS": True,
+    "EMBEDDED_SUPERSET": True,
+    "EMBEDDABLE_CHARTS": True,
+    "ENABLE_TEMPLATE_PROCESSING": True,
+    "ALERTS_ATTACH_REPORTS": True,
+    "DASHBOARD_NATIVE_FILTERS_SET": True,
+    "ALERT_REPORTS": True,
+    "DASHBOARD_FILTERS_EXPERIMENTAL": True,
+    "ALLOW_ADHOC_SUBQUERY": True,
+    "DRUID_JOINS": True,
+    "RLS_IN_SQLLAB": True,
+    }
+FAB_ADD_SECURITY_API = True
+WTF_CSRF_ENABLED = False
+ENABLE_CORS = True
+CORS_OPTIONS = {
+    "supports_credentials": True,
+    "allow_headers": ["*"],
+    "resources": ["*"],
+    "origins": ["http://localhost:3000",'http://localhost:8088', 'http://localhost:8888', '*'], # replace the port-number 
+                                          # as per your application.
+}
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
 WEBDRIVER_BASEURL = "http://superset:8088/"  # When using docker compose baseurl should be http://superset_app:8088/
 # The base URL for the email report hyperlinks.
 WEBDRIVER_BASEURL_USER_FRIENDLY = WEBDRIVER_BASEURL
 SQLLAB_CTAS_NO_LIMIT = True
-
 #
 # Optionally import superset_config_docker.py (which will have been included on
 # the PYTHONPATH) in order to allow for local settings to be overridden
