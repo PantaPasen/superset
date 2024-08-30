@@ -99,7 +99,7 @@ CELERY_CONFIG = CeleryConfig
 
 
 GUEST_ROLE_NAME= 'embed_dashboard'
-GUEST_TOKEN_JWT_SECRET = "test-guest-secret-change-me"
+
 GUEST_TOKEN_JWT_EXP_SECONDS = 600  # 10 Minutes
 
 APP_NAME = "Bower Analytics"
@@ -133,7 +133,7 @@ CORS_OPTIONS = {
     "supports_credentials": True,
     "allow_headers": ["*"],
     "resources": ["*"],
-    "origins": ["http://localhost:3000",'http://localhost:8088', 'http://localhost:8888', '*'], # replace the port-number 
+    "origins": ["http://localhost:3000",'http://localhost:8088', 'http://localhost:8888',"http://localhost:4001", "http://localhost:4004", "https://eu-staging.pantbot.com","https://eu-production.pantbot.com","https://portal.getbower.com"], # replace the port-number 
                                           # as per your application.
 }
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True

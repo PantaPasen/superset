@@ -70,7 +70,7 @@ services:
     user: "root"
     restart: unless-stopped
     ports:
-      - 80:8088
+      - 8088:8088
     depends_on: *superset-depends-on
     volumes: *superset-volumes
 
