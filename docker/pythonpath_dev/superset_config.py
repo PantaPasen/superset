@@ -98,7 +98,7 @@ class CeleryConfig:
 CELERY_CONFIG = CeleryConfig
 
 
-GUEST_ROLE_NAME= 'embed_dashboard'
+GUEST_ROLE_NAME= 'Admin'
 
 GUEST_TOKEN_JWT_EXP_SECONDS = 600  # 10 Minutes
 
@@ -109,7 +109,7 @@ SESSION_COOKIE_SAMESITE = None
 
 
 ENABLE_PROXY_FIX = True
-PUBLIC_ROLE_LIKE_GAMMA = True
+PUBLIC_ROLE_LIKE_ADMIN = True
 OVERRIDE_HTTP_HEADERS = {'X-Frame-Options': 'ALLOWALL'}
 HTTP_HEADERS = {'X-Frame-Options': 'ALLOWALL'}
 FEATURE_FLAGS = {
@@ -133,7 +133,7 @@ CORS_OPTIONS = {
     "supports_credentials": True,
     "allow_headers": ["*"],
     "resources": ["*"],
-    "origins": ["http://localhost:3000",'http://localhost:8088', 'http://localhost:8888',"http://localhost:4001", "http://localhost:4004", "https://eu-staging.pantbot.com","https://eu-production.pantbot.com","https://portal.getbower.com"], # replace the port-number 
+    "origins": ["*"], #["http://localhost:3000",'http://localhost:8088', 'http://localhost:8888',"http://localhost:4001", "http://localhost:4004", "https://eu-staging.pantbot.com","https://eu-production.pantbot.com","https://portal.getbower.com"], # replace the port-number 
                                           # as per your application.
 }
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
