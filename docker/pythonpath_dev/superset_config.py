@@ -97,11 +97,21 @@ class CeleryConfig:
 
 CELERY_CONFIG = CeleryConfig
 
-TALISMAN_ENABLED: False
+
+GUEST_ROLE_NAME= 'embed_dashboard'
+GUEST_TOKEN_JWT_SECRET = "test-guest-secret-change-me"
+GUEST_TOKEN_JWT_EXP_SECONDS = 600  # 10 Minutes
+
+APP_NAME = "Bower Analytics"
+
+TALISMAN_ENABLED = False
 SESSION_COOKIE_SAMESITE = None
+
+
 ENABLE_PROXY_FIX = True
 PUBLIC_ROLE_LIKE_GAMMA = True
-#HTTP_HEADERS = {'X-Frame-Options': 'ALLOWALL'}
+OVERRIDE_HTTP_HEADERS = {'X-Frame-Options': 'ALLOWALL'}
+HTTP_HEADERS = {'X-Frame-Options': 'ALLOWALL'}
 FEATURE_FLAGS = {
     "ALERT_REPORTS": True,
     "EMBEDDED_SUPERSET": True,
@@ -114,6 +124,7 @@ FEATURE_FLAGS = {
     "ALLOW_ADHOC_SUBQUERY": True,
     "DRUID_JOINS": True,
     "RLS_IN_SQLLAB": True,
+    "DASHBOARD_RBAC": True,
     }
 FAB_ADD_SECURITY_API = True
 WTF_CSRF_ENABLED = False
