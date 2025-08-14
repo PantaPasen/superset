@@ -1,0 +1,58 @@
+# Final Working Superset Docker Compose
+# Compatible with Docker Compose 1.29.2
+
+version: '3.8'
+
+services:
+  # PostgreSQL database
+  db:
+    image: postgres:15
+    container_name: superset_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: superset
+      POSTGRES_USER: superset
+      POSTGRES_PASSWORD: superset
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # Redis cache
+  redis:
+    image: redis:7
+    container_name: superset_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  # Superset application
+  superset:
+    image: apache/superset:latest
+    container_name: superset_app
+    restart: unless-stopped
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_SECRET_KEY: your-secret-key-here
+      SUPERSET_DB_URI: postgresql+psycopg2://superset:superset@db:5432/superset
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      FLASK_APP: "superset.app:create_app()"
+      SUPERSET_LOAD_EXAMPLES: "yes"
+    volumes:
+      - superset_data:/app/superset_home
+    command: >
+      bash -c "
+      superset db upgrade &&
+      superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin &&
+      superset init &&
+      superset run -h 0.0.0.0 -p 8088 --with-threads --reload --debugger
+      "
+
+volumes:
+  db_data:
+  superset_data:
