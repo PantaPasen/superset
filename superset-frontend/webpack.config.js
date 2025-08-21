@@ -124,6 +124,7 @@ const plugins = [
       'package.json',
       { from: 'src/assets/images', to: 'images' },
       { from: 'src/assets/stylesheets', to: 'stylesheets' },
+      { from: 'src/assets/branding', to: 'branding' },
     ],
   }),
 

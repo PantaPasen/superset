@@ -1,0 +1,49 @@
+# Superset Production Environment Configuration
+# Copy this content to docker/.env on your VM
+
+# Database Configuration
+POSTGRES_DB=superset
+POSTGRES_USER=superset
+POSTGRES_PASSWORD=superset
+
+# Superset Core Configuration
+SUPERSET_LOG_LEVEL=info
+SUPERSET_LOAD_EXAMPLES=no
+
+# Celery Configuration
+CELERYD_CONCURRENCY=2
+
+# Development/Testing Configuration
+CYPRESS_CONFIG=
+
+# Build Configuration
+BUILD_TRANSLATIONS=false
+DEV_MODE=false
+SUPERSET_BUILD_TARGET=dev
+
+# Docker Registry Configuration (set by deployment scripts)
+DOCKER_REGISTRY=europe-west4-docker.pkg.dev/bower-eu-data-warehouse/boie
+IMAGE_NAME=superset
+IMAGE_TAG=latest
+
+# Redis Configuration
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_SSL=false
+
+# Security Configuration
+# IMPORTANT: Generate a strong SECRET_KEY for production
+SUPERSET__SECRET_KEY=your-secret-key-change-this-in-production
+
+# Feature Flags
+FEATURE_FLAG_ENABLE_EXPLORE_DRAG_AND_DROP=true
+FEATURE_FLAG_ENABLE_TEMPLATE_PROCESSING=true
+
+# Production Performance Settings
+SUPERSET_WEBSERVER_TIMEOUT=300
+SUPERSET_WEBSERVER_WORKERS=4
+
+# Production Notes:
+# 1. Change SUPERSET__SECRET_KEY to a strong, unique value
+# 2. Set proper database passwords
+# 3. Configure BigQuery service account if needed

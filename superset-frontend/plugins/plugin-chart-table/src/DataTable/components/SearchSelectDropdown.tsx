@@ -18,12 +18,22 @@
  */
 /* eslint-disable import/no-extraneous-dependencies */
 import { styled } from '@superset-ui/core';
-import { RawAntdSelect } from '@superset-ui/core/components';
-import { SearchOption } from '../../types';
+// import { RawAntdSelect } from '@superset-ui/core/components';
+// import { SearchOption } from '../../types';
 
-const StyledSelect = styled(RawAntdSelect)`
+// Temporary fix: define SearchOption locally
+interface SearchOption {
+  value: string;
+  label: string;
+}
+
+// Temporary fix: use a simple select element instead of RawAntdSelect
+const StyledSelect = styled.select`
   width: 120px;
   margin-right: 8px;
+  padding: 4px 8px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
 `;
 
 interface SearchSelectDropdownProps {
@@ -44,9 +54,14 @@ function SearchSelectDropdown({
     <StyledSelect
       className="search-select"
       value={value || (searchOptions?.[0]?.value ?? '')}
-      options={searchOptions}
-      onChange={onChange}
-    />
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {searchOptions.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </StyledSelect>
   );
 }
 

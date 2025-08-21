@@ -14,6 +14,8 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+from flask import redirect
+
 from superset import app, talisman
 from superset.stats_logger import BaseStatsLogger
 from superset.superset_typing import FlaskResponse
@@ -27,3 +29,10 @@ def health() -> FlaskResponse:
     stats_logger: BaseStatsLogger = app.config["STATS_LOGGER"]
     stats_logger.incr("health")
     return "OK"
+
+
+@talisman(force_https=False)
+@app.route("/favicon.ico")
+def favicon() -> FlaskResponse:
+    """Redirect favicon.ico requests to the actual favicon PNG file."""
+    return redirect("/static/assets/images/favicon.png", code=301)

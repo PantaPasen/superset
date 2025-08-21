@@ -49,7 +49,7 @@ describe('Radar transformProps', () => {
     granularity_sqla: 'ds',
     columnConfig: {
       'MAX(na_sales)': {
-        radarMetricMaxValue: null,
+        radarMetricMaxValue: undefined,
         radarMetricMinValue: 0,
       },
       'SUM(eu_sales)': {

@@ -93,6 +93,10 @@ const extensionsRegistry = getExtensionsRegistry();
 
 const headerContainerStyle = theme => css`
   border-bottom: 1px solid ${theme.colors.grayscale.light2};
+  
+  .header-with-actions {
+    height: ${theme.gridUnit * 13}px;
+  }
 `;
 
 const editButtonStyle = theme => css`

@@ -125,3 +125,6 @@ docker/*local*
 test-report.html
 superset/static/stats/statistics.html
 .aider*
+
+archive/
+production-backup-20250820-145211/
